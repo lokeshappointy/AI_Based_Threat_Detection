@@ -1,0 +1,20 @@
+  {
+    action            = "block",
+    description       = "WAF Test: Block requests to /login.php on (waf-test.appointy.ai)",
+    enabled           = true,
+    expression        = <<EOT
+      (http.host eq "waf-test.appointy.ai") and 
+      (http.request.uri.path eq "/login.php")
+    EOT
+    action_parameters = null
+  }
+
+
+
+
+Key consideration for part1
+
+
+
+1.  PR Protection rule
+2. 
