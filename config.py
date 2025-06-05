@@ -48,7 +48,7 @@ SESSION_RENEWAL_INTERVAL_MINUTES = 55
 
 # --- Log Batching for AI Analysis ---
 MAX_LOG_BATCH_SIZE = 15  # Adjust based on typical log entry size and Gemini token limits
-BATCH_FLUSH_INTERVAL_SECONDS = 60 # Adjust
+BATCH_FLUSH_INTERVAL_SECONDS = 15 # Adjust
 
 # --- Output Log File (Optional for raw logs) ---
 OUTPUT_LOG_FILE = "received_cloudflare_logs.ndjson" 
