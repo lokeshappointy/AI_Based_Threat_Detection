@@ -179,8 +179,7 @@ if __name__ == "__main__":
         except KeyboardInterrupt: 
             # This should ideally not be reached if signal handlers work as expected.
             # If it is, it might mean a very forceful/fast double Ctrl+C.
-            print("
-Application forcefully interrupted by KeyboardInterrupt in __main__.")
+            print("Application forcefully interrupted by KeyboardInterrupt in __main__.")
         finally:
             print("Exiting main application block.")
             # Final check, ensure all aiohttp sessions are closed if errors occurred early.
