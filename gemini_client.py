@@ -1,9 +1,5 @@
 # gemini_client.py
-import google.generativeai as genai # Keep this import for now for compatibility, though genai is the main one
-# The new library is google-genai, and the primary import is google.genai
-# In some cases, the direct import 'import genai' might also work depending on installation
-# Let's try the most common new import structure.
-import google.genai as google_genai # Use a different alias to avoid confusion with the old one if both exist
+import google.generativeai as genai # Correct import for google-genai library
 import json
 from config import GEMINI_API_KEY, GEMINI_MODEL_NAME
 
@@ -12,12 +8,11 @@ class GeminiClient:
         if not GEMINI_API_KEY:
             raise ValueError("GEMINI_API_KEY not configured.")
 
-        # Configure using the new library's entry point
-        google_genai.configure(api_key=GEMINI_API_KEY)
+        # Configure using the 'genai' alias from the correct import
+        genai.configure(api_key=GEMINI_API_KEY)
 
-        # Use a model that supports function calling from the new library's interface
-        # The model naming and function calling structure should be similar.
-        self.model = google_genai.GenerativeModel( # Use google_genai.GenerativeModel
+        # Use a model that supports function calling
+        self.model = genai.GenerativeModel( # Use genai.GenerativeModel
             model_name=GEMINI_MODEL_NAME,
             tools=[{
                 "function_declarations": [
@@ -64,26 +59,17 @@ class GeminiClient:
                 ]
             }]
         )
-        # Start a chat session for potential multi-turn analysis if needed later
-        self.chat_session = self.model.start_chat() # Method name remains the same
+        # Start a chat session
+        self.chat_session = self.model.start_chat()
 
     async def analyze_logs(self, log_entries: list):
         """
         Analyzes a batch of log entries using Gemini to identify threats.
-
-        Args:
-            log_entries: A list of parsed log entry dictionaries.
-
-        Returns:
-            A list of detected threats in the specified format, or None if no threats detected
-            or an error occurred.
         """
         if not log_entries:
             return []
 
-        # Format logs for the prompt
         log_text = json.dumps(log_entries, indent=2)
-
         prompt = f"""Analyze the following Cloudflare log entries to identify potential security threats,
         such as dictionary attacks, suspicious IP patterns, or attempts to bypass security rules.
         Focus on patterns in ClientIP, ClientRequestUserAgent, ClientASN, FirewallMatchesActions,
@@ -99,47 +85,26 @@ class GeminiClient:
         """
 
         try:
-            # Send the prompt with the function calling expectation using the new library
-            response = await self.chat_session.send_message_async(prompt) # Method name remains the same
+            response = await self.chat_session.send_message_async(prompt)
 
-            # Check if the model wants to call the function
-            # Accessing function call details might slightly differ in structure
-            # Based on google-genai examples, it's often response.tool_calls or similar
-            # Let's check the structure of the response object from the new library.
-            # A common pattern is to check response.candidates[0].content.parts[0].function_call
-            # If that doesn't work, we might need to inspect the response object.
-            # Assuming the structure is similar for now:
             if response.candidates and response.candidates[0].content.parts:
                  first_part = response.candidates[0].content.parts[0]
-                 if hasattr(first_part, 'function_call') and first_part.function_call.name == "report_threats":
-                    # The model provides the function call details
+                 # Check for function_call attribute and its name
+                 if hasattr(first_part, 'function_call') and hasattr(first_part.function_call, 'name') and first_part.function_call.name == "report_threats":
                     tool_call = first_part.function_call
-
-                    # The arguments are in a dictionary format within the args attribute
                     threat_arguments = tool_call.args
                     return threat_arguments.get("threats", [])
                  else:
-                    # No function_call attribute or name is not report_threats
-                    # This is the case where the model does not report threats using the function
                     print("Gemini analysis completed, no threats reported by the model via function call.")
-                    # Optionally, you could print response.text here if you want to see
-                    # what the model outputted if it didn't call the function.
-                    # print(f"Gemini response (non-function call): {response.text}")
+                    # You can inspect response.text for non-function call responses
+                    # if hasattr(response, 'text'): print(f"Gemini response (text): {response.text}")
                     return []
-
-
-            # If response structure is unexpected or empty
-            print("Gemini response structure unexpected or empty.")
-            # Optionally print the full response object for debugging
-            # print(f"Full Gemini response object: {response}")
+            
+            print("Gemini response structure unexpected or empty (no candidates/parts).")
             return []
-
 
         except Exception as e:
             print(f"Error during Gemini analysis: {e}")
-            # Optionally, log the response text for debugging if available
-            # print(f"Gemini response text: {response.text if 'response' in locals() and hasattr(response, 'text') else 'N/A'}")
-            # Optionally print the full exception details
             import traceback
             traceback.print_exc()
-            return [] # Return empty list on error
+            return []
