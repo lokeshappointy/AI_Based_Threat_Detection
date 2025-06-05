@@ -1,0 +1,9 @@
+curl https://api.cloudflare.com/client/v4/zones/2f956813472c7bcef076354296fe8139/logpush/edge/jobs \
+--header "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+--header "Content-Type: application/json" \
+--data '{
+  "fields": "ClientIP,ClientRequestHost,ClientRequestMethod,ClientRequestURI,EdgeEndTimestamp,EdgeResponseBytes,EdgeResponseStatus,EdgeStartTimestamp,RayID",
+  "sample": 100,
+  "filter": "",
+  "kind": "instant-logs"
+}'
