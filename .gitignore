@@ -3,4 +3,5 @@ demo_logs.txt
 .venv
 __pycache__
 setting.json
+received_cloudflare_logs.ndjson
 
