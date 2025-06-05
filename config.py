@@ -53,6 +53,9 @@ BATCH_FLUSH_INTERVAL_SECONDS = 15 # Adjust
 # --- Output Log File (Optional for raw logs) ---
 OUTPUT_LOG_FILE = "received_cloudflare_logs.ndjson" 
 
+# --- Terraform Configuration ---
+TFVARS_FILE_PATH = "cloudflare/zones/appointy_ai/appointy_ai.tfvars"
+
 # --- Delays ---
 RETRY_DELAY_SECONDS = 30
 WEBSOCKET_ERROR_RETRY_DELAY_SECONDS = 10
