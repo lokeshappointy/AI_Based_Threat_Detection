@@ -1,0 +1,5 @@
+demo_logs.txt
+.env
+.venv
+__pycache__
+
