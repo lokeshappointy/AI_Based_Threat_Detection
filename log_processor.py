@@ -41,7 +41,7 @@ class LogProcessor:
 
     async def process_buffer(self):
         """Processes the buffer, sending batches to Gemini."""
-        if not self._log_buffer:
+        if not self._log_bufer:
             return
 
         print(f"Processing buffer: {len(self._log_buffer)} entries.")
