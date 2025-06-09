@@ -108,7 +108,3 @@ The application will begin streaming logs from Cloudflare, analyzing them for th
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a pull request or open an issue if you have any suggestions or find any bugs.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
