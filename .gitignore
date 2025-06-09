@@ -4,4 +4,4 @@ demo_logs.txt
 __pycache__
 setting.json
 received_cloudflare_logs.ndjson
-
+request_script.sh

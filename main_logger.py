@@ -1,4 +1,3 @@
-\
 # main_logger.py
 import asyncio
 import signal

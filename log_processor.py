@@ -33,8 +33,7 @@ class LogProcessor:
             try:
                 # Assuming log_entry is already a dictionary parsed from JSON line
                 # Convert back to JSON string for NDJSON file format
-                self._output_file.write(json.dumps(log_entry) + '
-')
+                self._output_file.write(json.dumps(log_entry) + '\n')
                 self._output_file.flush() # Ensure it's written immediately
             except Exception as e:
                 print(f"Error writing log entry to file: {e}")
