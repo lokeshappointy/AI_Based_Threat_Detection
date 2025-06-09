@@ -33,7 +33,8 @@ class LogProcessor:
             try:
                 # Assuming log_entry is already a dictionary parsed from JSON line
                 # Convert back to JSON string for NDJSON file format
-                self._output_file.write(json.dumps(log_entry) + '\\n')
+                self._output_file.write(json.dumps(log_entry) + '
+')
                 self._output_file.flush() # Ensure it's written immediately
             except Exception as e:
                 print(f"Error writing log entry to file: {e}")
@@ -55,11 +56,11 @@ class LogProcessor:
         if threats:
             print(f"--- Detected Threats ({len(threats)}) ---")
             for threat in threats:
-                print(f"  IP: {threat.get('client_ip', 'N/A')}")
-                print(f"  User-Agent: {threat.get('user_agent', 'N/A')}")
-                print(f"  ASN: {threat.get('asn', 'N/A')}")
-                print(f"  Type: {threat.get('threat_type', 'Unknown')}")
-                print(f"  Description: {threat.get('description', 'No description')}")
+                print(f"  Entity Type: {threat.get('entity_type', 'N/A')}")
+                print(f"  Entity Value: {threat.get('entity_value', 'N/A')}")
+                print(f"  Reason: {threat.get('reason', 'N/A')}")
+                print(f"  Suggested Action: {threat.get('suggested_action', 'N/A')}")
+                print(f"  Confidence Score: {threat.get('confidence_score', 'N/A')}")
                 print("-" * 10) # Separator for threats
         else:
             print("Batch processed. No threats reported by AI.")

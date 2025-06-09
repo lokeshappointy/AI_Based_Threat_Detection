@@ -77,12 +77,20 @@ class GeminiClient:
             "Cross-Site Scripting (XSS) payloads (e.g., '<script>', 'onerror='), "
             "User-Agents known to be scanners or malicious bots (e.g., 'sqlmap', 'Nmap Scripting Engine', 'masscan', 'dirb', 'nikto', 'Havij', known bad bot strings), "
             "or IPs/ASNs generating an unusually high rate of HTTP error codes (401, 403, 404, 429, 5xx) particularly to sensitive paths. "
-            "Also, consider IPs making requests to common vulnerability probing paths (e.g., '/.env', '/config/backup.zip', '/phpmyadmin/').\n\n"
+            "Also, consider IPs making requests to common vulnerability probing paths (e.g., '/.env', '/config/backup.zip', '/phpmyadmin/'), "
+            "or IPs exhibiting a high request rate that could indicate a denial-of-service or brute-force attack.
+
+"
             "For each distinct suspicious activity or entity you identify with high confidence (e.g., confidence > 0.7), "
             "YOU MUST use the 'report_suspicious_activity' tool. Provide the entity type (IP, UserAgent, ASN, URI_Pattern for specific paths, RequestPattern for method+path), "
-            "the entity value, a concise reason based on the log data (e.g., 'Multiple 403s to /admin from this IP', 'SQLi signature in URI query', 'User agent is a known scanner'), "
-            "a suggested Cloudflare WAF action ('block', 'challenge'), and a confidence_score.\n\n"
-            f"Log Data Batch Sample (focus your analysis on these entries):\n```json\n{log_text}\n```"
+            "the entity value, a concise reason based on the log data (e.g., 'Multiple 403s to /admin from this IP', 'High request rate from IP', 'SQLi signature in URI query', 'User agent is a known scanner'), "
+            "a suggested Cloudflare WAF action ('block', 'challenge'), and a confidence_score.
+
+"
+            f"Log Data Batch Sample (focus your analysis on these entries):
+```json
+{log_text}
+```"
         )
 
         try:
