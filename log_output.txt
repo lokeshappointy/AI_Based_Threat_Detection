@@ -1,0 +1,28 @@
+2025-06-17 18:46:11 - src.services.gemini_service.GeminiService - INFO - Analyzing 73 log entries with Gemini AI
+2025-06-17 18:47:02 - src.services.gemini_service.GeminiService - INFO - Gemini analysis completed, no threats reported
+2025-06-17 18:47:03 - src.services.log_processing_service.LogProcessingService - INFO - Processing batch of 69 logs
+2025-06-17 18:47:03 - src.services.gemini_service.GeminiService - INFO - Analyzing 69 log entries with Gemini AI
+2025-06-17 18:48:30 - src.services.gemini_service.GeminiService - INFO - Gemini identified 1 potential threats
+2025-06-17 18:48:30 - src.services.threat_reporting_service.ConsoleThreatReporter - WARNING - === DETECTED THREATS (1) ===
+2025-06-17 18:48:30 - src.services.threat_reporting_service.ConsoleThreatReporter - WARNING - Threat #1:
+2025-06-17 18:48:30 - src.services.threat_reporting_service.ConsoleThreatReporter - WARNING -   Entity Type: IP
+2025-06-17 18:48:30 - src.services.threat_reporting_service.ConsoleThreatReporter - WARNING -   Entity Value: 2602:fb54:9fa::
+2025-06-17 18:48:30 - src.services.threat_reporting_service.ConsoleThreatReporter - WARNING -   Reason: Probe for WordPress plugin directory (/wp-content/plugins/) on primeelectric.appointy.com, resulted in 403 and WAF challenge.
+2025-06-17 18:48:30 - src.services.threat_reporting_service.ConsoleThreatReporter - WARNING -   Suggested Action: block
+2025-06-17 18:48:30 - src.services.threat_reporting_service.ConsoleThreatReporter - WARNING -   Confidence Score: 0.80
+2025-06-17 18:48:30 - src.services.threat_reporting_service.ConsoleThreatReporter - WARNING - ------------------------------
+2025-06-17 18:48:30 - src.services.threat_reporting_service.ConsoleThreatReporter - WARNING - ========================================
+2025-06-17 18:48:31 - src.services.log_processing_service.LogProcessingService - INFO - Processing batch of 106 logs
+2025-06-17 18:48:31 - src.services.gemini_service.GeminiService - INFO - Analyzing 106 log entries with Gemini AI
+2025-06-17 18:50:14 - src.services.gemini_service.GeminiService - INFO - Gemini analysis completed, no threats reported
+2025-06-17 18:50:15 - src.services.log_processing_service.LogProcessingService - INFO - Processing batch of 117 logs
+2025-06-17 18:50:15 - src.services.gemini_service.GeminiService - INFO - Analyzing 117 log entries with Gemini AI
+2025-06-17 18:51:30 - src.services.gemini_service.GeminiService - INFO - Gemini analysis completed, no threats reported
+2025-06-17 18:51:31 - src.services.log_processing_service.LogProcessingService - INFO - Processing batch of 90 logs
+2025-06-17 18:51:31 - src.services.gemini_service.GeminiService - INFO - Analyzing 90 log entries with Gemini AI
+2025-06-17 19:52:21 - src.services.gemini_service.GeminiService - ERROR - Error during Gemini analysis: 504 Deadline Exceeded
+2025-06-17 19:52:22 - src.services.log_processing_service.LogProcessingService - INFO - Processing batch of 170 logs
+2025-06-17 19:52:22 - src.services.gemini_service.GeminiService - INFO - Analyzing 170 log entries with Gemini AI
+2025-06-17 20:08:20 - src.services.gemini_service.GeminiService - ERROR - Error during Gemini analysis: 504 Deadline Exceeded
+^C2025-06-17 20:23:37 - src.application.WAFAgent - INFO - Received signal SIGINT. Initiating graceful shutdown...
+=^C2025-06-17 20:26:41 - src.application.WAFAgent - WARNING - Shutdown already in progress. Press Ctrl+C again to force exit.
